@@ -5,7 +5,6 @@ module.exports = function(sequelize) {
 	return {
 		create: function(req, res) {
 			var newTitle = {
-				id: req.body.id,
 				name: req.body.name
 			};
 			Title.create(newTitle).then(function() {

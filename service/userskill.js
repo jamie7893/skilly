@@ -8,8 +8,8 @@ module.exports = function(sequelize) {
 				userid: req.body.userid,
 				skillid: req.body.skillid
 			};
-			JctBlogPost.create(newUserSkill).then(function() {
-				res.send(200);
+			UserSkill.create(newUserSkill).then(function() {
+				res.sendStatus(200);
 			});
 		},
 		get: function(req, res) {

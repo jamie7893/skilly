@@ -6,7 +6,6 @@ module.exports = function(sequelize) {
 	return {
 		create: function(req, res) {
 			var newUser = {
-				userid: req.body.userid,
 				nameLast: req.body.nameLast,
         nameFirst: req.body.nameFirst,
         age: req.body.age,

@@ -55,6 +55,7 @@ sequelize.sync().then(function(res) {
         app.route('/title/:id')
             .put(titleService.updateID)
             .get(titleService.getID)
+            .delete(titleService.deleteID)
         app.route('/skill')
             .get(skillService.get)
             .post(skillService.create)

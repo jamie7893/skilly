@@ -4,8 +4,7 @@ module.exports = function(sequelize, DataTypes) {
 					type: DataTypes.INTEGER(10),
 					allowNull: false,
 					primaryKey: true,
-					autoIncrement: true,
-					unsigned: true
+					autoIncrement: true
 				},
 				name: {
 					type: DataTypes.CHAR(30),

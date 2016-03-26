@@ -1,0 +1,442 @@
+body,html{
+ height: 100%;
+}
+
+/* remove outer padding */
+.main .row{
+ padding: 0px;
+ margin: 0px;
+}
+
+/*Remove rounded coners*/
+
+nav.sidebar.navbar {
+  margin-top: 50px;
+ border-radius: 0px;
+}
+
+nav.sidebar, .main{
+ -webkit-transition: margin 200ms ease-out;
+   -moz-transition: margin 200ms ease-out;
+   -o-transition: margin 200ms ease-out;
+   transition: margin 200ms ease-out;
+}
+
+/* Add gap to nav and right windows.*/
+.main{
+ padding: 10px 10px 0 10px;
+}
+
+/* .....NavBar: Icon only with coloring/layout.....*/
+
+/*small/medium side display*/
+@media (min-width: 768px) {
+
+ /*Allow main to be next to Nav*/
+ .main{
+   position: absolute;
+   width: calc(100% - 40px); /*keeps 100% minus nav size*/
+   margin-left: 40px;
+   float: right;
+ }
+
+ /*lets nav bar to be showed on mouseover*/
+ nav.sidebar:hover + .main{
+   margin-left: 200px;
+ }
+
+ /*Center Brand*/
+ nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+   margin-left: 0px;
+ }
+ /*Center Brand*/
+ nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
+   text-align: center;
+   width: 100%;
+   margin-left: 0px;
+ }
+
+ /*Center Icons*/
+ nav.sidebar a{
+   padding-right: 13px;
+ }
+
+ /*adds border top to first nav box */
+ nav.sidebar .navbar-nav > li:first-child{
+   border-top: 1px #e5e5e5 solid;
+ }
+
+ /*adds border to bottom nav boxes*/
+ nav.sidebar .navbar-nav > li{
+   border-bottom: 1px #e5e5e5 solid;
+ }
+
+ /* Colors/style dropdown box*/
+ nav.sidebar .navbar-nav .open .dropdown-menu {
+   position: static;
+   float: none;
+   width: auto;
+   margin-top: 0;
+   background-color: transparent;
+   border: 0;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+ }
+
+ /*allows nav box to use 100% width*/
+ nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+   padding: 0 0px 0 0px;
+ }
+
+ /*colors dropdown box text */
+ .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+   color: #777;
+ }
+
+ /*gives sidebar width/height*/
+ nav.sidebar{
+   width: 200px;
+   height: 100%;
+   margin-left: -160px;
+   float: left;
+   z-index: 8000;
+   margin-bottom: 0px;
+ }
+
+ /*give sidebar 100% width;*/
+ nav.sidebar li {
+   width: 100%;
+ }
+
+ /* Move nav to full on mouse over*/
+ nav.sidebar:hover{
+   margin-left: 0px;
+ }
+ /*for hiden things when navbar hidden*/
+ .forAnimate{
+   opacity: 0;
+ }
+}
+
+/* .....NavBar: Fully showing nav bar..... */
+
+@media (min-width: 1330px) {
+
+ /*Allow main to be next to Nav*/
+ .main{
+   width: calc(100% - 200px); /*keeps 100% minus nav size*/
+   margin-left: 200px;
+ }
+
+ /*Show all nav*/
+ nav.sidebar{
+   margin-left: 0px;
+   float: left;
+ }
+ /*Show hidden items on nav*/
+ nav.sidebar .forAnimate{
+   opacity: 1;
+ }
+}
+
+nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+ color: #CCC;
+ background-color: transparent;
+}
+
+nav:hover .forAnimate{
+ opacity: 1;
+}
+section{
+ padding-left: 15px;
+}
+
+.eachuser {
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  display: -webkit-flex;
+  display: inline-flex;
+  align-content: flex-start;
+  margin-left: 100px;
+  margin-bottom: 35px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 300px;
+  height: auto;
+  align-self: flex-start;
+}
+
+#login {
+  margin-top: 20px;
+}
+#lean_overlay {
+        position: fixed;
+        z-index: 100;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: #000;
+        display: none;
+}
+
+.popupContainer {
+        position: absolute;
+        width: 330px;
+        height: auto;
+        left: 45%;
+        top: 60px;
+        background: #FFF;
+}
+
+#modal_trigger {
+
+}
+
+.btn {
+        padding: 10px 20px;
+        background: #F4F4F2;
+}
+
+.btn_red {
+        background: #ED6347;
+        color: #FFF;
+}
+
+.btn:hover {
+        background: #E4E4E2;
+}
+
+.btn_red:hover {
+        background: #C12B05;
+}
+
+a.btn {
+        color: #666;
+        text-align: center;
+        text-decoration: none;
+}
+
+a.btn_red {
+        color: #FFF;
+}
+
+.one_half {
+        width: 50%;
+        display: block;
+        float: left;
+}
+
+.one_half.last {
+        width: 45%;
+        margin-left: 5%;
+}
+/* Popup Styles*/
+
+.popupHeader {
+        font-size: 16px;
+        text-transform: uppercase;
+}
+
+.popupHeader {
+        background: #F4F4F2;
+        position: relative;
+        padding: 10px 20px;
+        border-bottom: 1px solid #DDD;
+        font-weight: bold;
+}
+
+.popupHeader .modal_close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px 15px;
+        background: #E4E4E2;
+        cursor: pointer;
+        color: #aaa;
+        font-size: 16px;
+}
+
+.popupBody {
+        padding: 20px;
+}
+/* Social Login Form */
+
+.social_login {}
+
+.social_login .social_box {
+        display: block;
+        clear: both;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #F4F4F2;
+        overflow: hidden;
+}
+
+.social_login .icon {
+        display: block;
+        width: 10px;
+        padding: 5px 10px;
+        margin-right: 10px;
+        float: left;
+        color: #FFF;
+        font-size: 16px;
+        text-align: center;
+}
+
+.social_login .fb .icon {
+        background: #3B5998;
+}
+
+.social_login .google .icon {
+        background: #DD4B39;
+}
+
+.social_login .icon_title {
+        display: block;
+        padding: 5px 0;
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+        color: #777;
+}
+
+.social_login .social_box:hover {
+        background: #E4E4E2;
+}
+
+.centeredText {
+        text-align: center;
+        margin: 20px 0;
+        clear: both;
+        overflow: hidden;
+        text-transform: uppercase;
+}
+
+.action_btns {
+        clear: both;
+        overflow: hidden;
+}
+
+.action_btns a {
+        display: block;
+}
+/* User Login Form */
+
+.user_login {
+        display: none;
+}
+
+.user_profile {
+        display: none;
+        margin: auto;
+        margin-top: 50px;
+        width: 400px;
+}
+.user_profile label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_profile input[type="text"],
+.user_profile input[type="email"],
+.user_profile input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_profile input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_profile input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_profile .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+///////////////////
+.user_login label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_login input[type="text"],
+.user_login input[type="email"],
+.user_login input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_login input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_login input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_login .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+
+.forgot_password {
+        display: block;
+        margin: 20px 0 10px;
+        clear: both;
+        overflow: hidden;
+        text-decoration: none;
+        color: #ED6347;
+}
+/* User Register Form */
+
+.user_register {
+        display: none;
+}
+
+.user_register label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_register input[type="text"],
+.user_register input[type="email"],
+.user_register input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_register input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_register input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_register .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+footer {
+    margin: 50px 0;
+}

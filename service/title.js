@@ -12,7 +12,9 @@ module.exports = function(sequelize) {
 			});
 		},
 		get: function(req, res) {
-			Title.findAll().then(function(titles) {
+			Title.findAll({
+				attributes: ['id', 'name']
+			}).then(function(titles) {
 				res.json(titles);
 			});
 		},

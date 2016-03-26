@@ -1,27 +1,28 @@
 module.exports = function(sequelize, DataTypes) {
 		return sequelize.define('user', {
-				userid: {
-					type: DataTypes.INTEGER(10),
-					allowNull: false,
-					primaryKey: true,
-					autoIncrement: true,
-					unsigned: true
+			id: {
+				type: DataTypes.INTEGER(11),
+				allowNull: false,
+				primaryKey: true,
+				unique: true,
+				autoIncrement: true
 				},
 				nameLast: {
-					type: DataTypes.CHAR(30),
-					allowNull: false
-				},
-				nameFirst: {
-					type: DataTypes.CHAR(30),
-					allowNull: false
-				},
-				age: {
-					type: DataTypes.INTEGER(10),
-					unsigned: true
-				},
+		      type: DataTypes.STRING,
+		      allowNull: false
+		    },
+		    nameFirst: {
+		      type: DataTypes.STRING,
+		      allowNull: false
+		    },
+		    localemail: {
+		      type: DataTypes.STRING,
+		      allowNull: false,
+		      unique: true
+		    },
 				idTitle: {
 					type: DataTypes.INTEGER(10),
-					allowNull: false
+					primaryKey: true
 				}
 				},
 				{

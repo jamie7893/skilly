@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
 		return sequelize.define('userskill', {
-				userid: {
+				id: {
 					type: DataTypes.INTEGER(10),
 					allowNull: false,
 					primaryKey: true,
 					unsigned: true
 				},
-        skillid: {
+        idSkill: {
 					type: DataTypes.INTEGER(10),
 					allowNull: false,
 					primaryKey: true,

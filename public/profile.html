@@ -206,7 +206,7 @@
           <form method="post" action="/updateprofile">
 
             <h1>Title:</h1>
-            <select id="selectpicker" class="form-control">
+            <select name="title" id="selectpicker" class="form-control">
 
             </select>
 
@@ -219,7 +219,7 @@
             <div id="skills">
               <h1>Skills:</h1>
               <p id="addskill" onmouseover="" style="cursor: pointer;">Click here to add another skill!</p>
-              <select id="skillpicker" class="form-control">
+              <select name="skill[]" id="skillpicker" class="form-control">
 
               </select>
               <br />
@@ -230,11 +230,11 @@
             </div>
 
             <h1>Upload your profile picture here:</h1>
-            <INPUT TYPE=FILE NAME="upfile">
+            <input type="file" name="upfile">
             <br />
 
             <h1>Describe your self</h1>
-            <textarea rows="5" cols="60" type="text" name="description" id="desc" placeholder="Describe your self" required="true" /></textarea>
+            <textarea rows="5" cols="60" type="text" name="desc" id="desc" placeholder="Describe your self" required="true" /></textarea>
             <br />
 
             <div class="action_btns">

@@ -34,7 +34,9 @@ app.use(bodyParser.json());
 app.set('trust proxy', 1); // trust first proxy
 var sess = {
   secret: 'mqpetbxmzodjyyesmfpqirhgncmxssfr',
-  cookie: {}
+  cookie: {},
+  resave: false,
+  saveUninitialized: true
 };
 
 if (app.get('env') === 'production') {
@@ -85,8 +87,8 @@ sequelize.sync().then(function(res) {
 
     app.route('/logout')
       .get(userService.logout);
-    app.route('/profile.html')
-      // .get(userService.get);
+    app.route('/updateprofile')
+      .post(userService.updateprofile);
     app.route('/signup')
       .post(userService.create);
     app.route('/login')

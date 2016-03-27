@@ -20,9 +20,15 @@ module.exports = function(sequelize, DataTypes) {
 		      allowNull: false,
 		      unique: true
 		    },
+				desc: {
+		      type: DataTypes.STRING,
+		    },
+				img: {
+		      type: DataTypes.STRING,
+		    },
 				idTitle: {
 					type: DataTypes.INTEGER(10),
-					primaryKey: true
+					unique: true
 				}
 				},
 				{

@@ -33,9 +33,9 @@ function drawUsers(user) {
         console.log(userinfo);
         $('#userlist').append('<div id="' + user.id + '" class="flexbox">');
         $('#' + user.id).append('<p align="center"> Preview:</p></div></div>');
-        $('#' + user.id).append('<img class="img-circle img-responsive img-center" src="/images/johnprofile.jpg" alt="">');
+        $('#' + user.id).append('<img class="img-circle img-responsive img-center" src="/images/' + user.img +'" alt="">');
         $('#' + user.id).append('<h1 align="center">' + userinfo.title.name + '. ' + user.nameFirst + ' ' + user.nameLast + '</h2>');
-        $('#' + user.id).append('<p align="center"> users description here</p></div></div>');
+        $('#' + user.id).append('<p align="center">' + user.desc + '</p></div></div>');
       });
     }
   });
@@ -108,7 +108,7 @@ function profile(user) {
             });
             $('#addskill').click(function() {
               console.log('click');
-              $('#skills').append('<select id="skillpicker' + ++count + '" class="form-control"></select><br />');
+              $('#skills').append('<select name="skill[]" id="skillpicker' + ++count + '" class="form-control"></select><br />');
               $.map(skills, function(skill) {
                 $('#skillpicker' + count).append('<option>' + skill.name + '</option>');
               });

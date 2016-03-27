@@ -1,43 +1,44 @@
 'use strict';
 var bcrypt = require('bcrypt-nodejs');
+var _ = require('lodash');
 module.exports = function(sequelize) {
-	var User = sequelize.import("../model/user");
-	var jctUserSkill = sequelize.import("../model/userskill");
-	var Skill = sequelize.import("../model/skill");
-	var Title = sequelize.import("../model/title");
-	var UserPass = sequelize.import("../model/userpassword");
+  var User = sequelize.import("../model/user");
+  var jctUserSkill = sequelize.import("../model/userskill");
+  var Skill = sequelize.import("../model/skill");
+  var Title = sequelize.import("../model/title");
+  var UserPass = sequelize.import("../model/userpassword");
 
-	UserPass.hasOne(User, {
+  UserPass.hasOne(User, {
     "foreignKey": "id"
   });
   User.hasOne(UserPass, {
     "foreignKey": "id"
   });
-	User.belongsToMany(Skill, {
-  "foreignKey": "id",
-  "through": {
-    model: jctUserSkill
-  }
-});
+  User.belongsToMany(Skill, {
+    "foreignKey": "id",
+    "through": {
+      model: jctUserSkill
+    }
+  });
 
-Skill.belongsToMany(User, {
-  "foreignKey": "idSkill",
-  "through": {
-    model: jctUserSkill
-  }
-});
+  Skill.belongsToMany(User, {
+    "foreignKey": "idSkill",
+    "through": {
+      model: jctUserSkill
+    }
+  });
 
-Title.belongsToMany(User, {
-  "foreignKey": "id",
-  "through": {
-    model: Title
-  }
-});
-User.belongsTo(Title, {
-  "foreignKey": "idTitle"
-});
-	return {
-		create: function(req, res, callback) {
+  Title.belongsToMany(User, {
+    "foreignKey": "id",
+    "through": {
+      model: Title
+    }
+  });
+  User.belongsTo(Title, {
+    "foreignKey": "idTitle"
+  });
+  return {
+    create: function(req, res, callback) {
       var sess = req.session;
       User.findOne({
         where: {
@@ -73,6 +74,79 @@ User.belongsTo(Title, {
         });
       });
     },
+    updateprofile: function(req, res, callback) {
+      var sess = req.session;
+      User.findOne({
+        where: {
+          id: req.cookies.id
+        }
+      }).then(function(user) {
+        if (!user) {
+          var err = 'Your not logged in!';
+          callback(err);
+        }
+        console.log(req.body);
+        Title.findOne({
+          where: {
+            name: req.body.title
+          },
+          attributes: ["id"]
+        }).then(function(title) {
+          var userProfile = {
+            nameLast: req.body.nameLast,
+            nameFirst: req.body.nameFirst,
+            desc: req.body.desc,
+            idTitle: title.id
+
+          };
+          // console.log(userProfile);
+          User.update(userProfile, {
+            where: {
+              id: user.id
+            }
+          });
+          _.map(req.body.skill, function(skill) {
+            Skill.findOne({
+              where: {
+                name: skill
+              }
+            }).then(function(foundskill) {
+              if (foundskill) {
+                jctUserSkill.findOne({
+                  where: {
+                    id: user.id,
+                    idSkill: foundskill.skillid
+                  }
+                }).then(function(skillExist) {
+                  if (skillExist) {
+                    return;
+                  } else {
+                    var newUserSkill = {
+                      id: user.id,
+                      idSkill: foundskill.skillid
+                    };
+
+                    jctUserSkill.create(newUserSkill);
+                  }
+                });
+              } else {
+                var newSkill = {
+                  name: skill
+                };
+                Skill.create(newSkill).then(function(theskill) {
+                  var theUserSkill = {
+                    id: user.id,
+                    idSkill: theskill.skillid
+                  };
+                  jctUserSkill.create(theUserSkill);
+                });
+              } // end else
+            }); // end map of skill
+          });
+        });
+      });
+      res.redirect('/profile.html');
+    },
     login: function(req, res, callback) {
       var sess = req.session;
       User.findOne({
@@ -104,7 +178,7 @@ User.belongsTo(Title, {
               res.cookie("name", user.nameFirst, {
                 expires: date
               });
-							res.cookie("id", user.id, {
+              res.cookie("id", user.id, {
                 expires: date
               });
               res.redirect('/profile.html');
@@ -119,58 +193,60 @@ User.belongsTo(Title, {
       res.clearCookie('name');
       res.redirect('/');
     },
-		get: function(req, res) {
-			User.findAll().then(function(users) {
-				res.json(users);
-			});
-		},
-		getID: function(req, res) {
-			User.findById(req.params.id).then(function(user) {
-				res.json(user);
-			});
-		},
-		getWithInfo: function(req, res) {
- User.findAll({
-      "where": { id: req.params.userid },
-			include: [{
+    get: function(req, res) {
+      User.findAll().then(function(users) {
+        res.json(users);
+      });
+    },
+    getID: function(req, res) {
+      User.findById(req.params.id).then(function(user) {
+        res.json(user);
+      });
+    },
+    getWithInfo: function(req, res) {
+      User.findAll({
+          "where": {
+            id: req.params.userid
+          },
+          include: [{
             model: Skill,
             attributes: ['name']
           }, {
             model: Title,
             attributes: ['name']
           }],
-			 "attributes" : []
-     })
+          "attributes": []
+        })
         .then(function(user) {
           res.json(user);
-				});
-		},
-		deleteID: function(req, res) {
-			jctUserSkill.destroy({
-				where: {
-					id: req.params.id //this will be your id that you want to delete
-				}
-			}).then(User.destroy({
-				where: {
-					id: req.params.id //this will be your id that you want to delete
-				}
-			}).then(function() {
-				res.json('Deleted successfully');
-			}, function(err) {
-				console.log(err);
-			}));
-		},
-		updateID: function(req, res) {
-			User.update(req.body, {
-					where: {
-						id: req.params.id
-					}
-				})
-				.then(function(result) {
-					res.json('It was updated!');
-				}, function(err) {
-					res.json(err);
-				});
-		}
-	};
+        });
+    },
+    deleteID: function(req, res) {
+      jctUserSkill.destroy({
+        where: {
+          id: req.params.id //this will be your id that you want to delete
+        }
+      }).then(User.destroy({
+        where: {
+          id: req.params.id //this will be your id that you want to delete
+        }
+      }).then(function() {
+        res.json('Deleted successfully');
+      }, function(err) {
+        console.log(err);
+      }));
+    },
+    updateID: function(req, res) {
+      User.update(req.body, {
+          where: {
+            id: req.params.id
+          }
+        })
+        .then(function(result) {
+          res.json('It was updated!');
+        }, function(err) {
+          res.json(err);
+        });
+    }
+  };
 };

@@ -73,7 +73,7 @@ module.exports = function(sequelize) {
           });
         });
       });
-    },
+  },
     updateprofile: function(req, res, callback) {
       var sess = req.session;
       User.findOne({
@@ -146,6 +146,7 @@ module.exports = function(sequelize) {
         });
       });
       res.redirect('/profile.html');
+
     },
     login: function(req, res, callback) {
       var sess = req.session;

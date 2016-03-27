@@ -363,7 +363,42 @@ a.btn_red {
         clear: both;
         overflow: hidden;
 }
-///////////////////
+.user_pic {
+        display: none;
+        margin: auto;
+        margin-top: 50px;
+        width: 400px;
+}
+.user_pic label {
+        display: block;
+        margin-bottom: 5px;
+}
+
+.user_pic input[type="text"],
+.user_pic input[type="email"],
+.user_pic input[type="password"] {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #DDD;
+        color: #666;
+}
+
+.user_pic input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+}
+
+.user_pic input[type="checkbox"]+label {
+        float: left;
+}
+
+.user_pic .checkbox {
+        margin-bottom: 10px;
+        clear: both;
+        overflow: hidden;
+}
+
 .user_login label {
         display: block;
         margin-bottom: 5px;

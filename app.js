@@ -14,6 +14,7 @@ const
   morgan = require('morgan'),
   bcrypt = require('bcrypt-nodejs'),
   path = require('path'),
+  multer = require('multer'),
   session = require('express-session');
 
 
@@ -30,6 +31,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
+var uploading = multer({
+  dest: './public/images/',
+  limits: {
+    fileSize: 1000000,
+    files: 1
+  }
+});
+
 
 app.set('trust proxy', 1); // trust first proxy
 var sess = {
@@ -79,57 +89,63 @@ var UserPass = sequelize.import('./model/userpassword.js');
 
 //sync the model with the database
 sequelize.sync().then(function(res) {
-    Skill.sync();
-    User.sync();
-    UserSkill.sync();
-    Title.sync();
-    UserPass.sync();
+  Skill.sync();
+  User.sync();
+  UserSkill.sync();
+  Title.sync();
+  UserPass.sync();
 
-    app.route('/logout')
-      .get(userService.logout);
-    app.route('/updateprofile')
-      .post(userService.updateprofile);
-    app.route('/signup')
-      .post(userService.create);
-    app.route('/login')
-      .post(userService.login);
-    app.route('/user')
-      .get(userService.get)
-      .post(userService.create);
-    app.route('/user/:id')
-      .get(userService.getID)
-      .delete(userService.deleteID)
-      .put(userService.updateID);
-    app.route('/title')
-      .get(titleService.get)
-      .post(titleService.create);
-    app.route('/title/:id')
-      .put(titleService.updateID)
-      .get(titleService.getID)
-      .delete(titleService.deleteID);
-    app.route('/skill')
-      .get(skillService.get)
-      .post(skillService.create);
-    app.route('/skill/:id')
-      .get(skillService.getID)
-      .delete(skillService.deleteID)
-      .put(skillService.updateID);
-    app.route('/userskill')
-      .get(userSkillService.get)
-      .post(userSkillService.create);
-    app.route('/userskill/:id')
-      .get(userSkillService.getID);
-    app.route('/userskill/:userid/:skillid')
-      .get(userSkillService.getbothID)
-      .put(userSkillService.updateID)
-      .delete(userSkillService.deleteID);
-    app.route('/user/:userid/profile')
-      .get(userService.getWithInfo);
-    server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
-      var addr = server.address();
-      console.log("Server listening at", addr.address + ":" + addr.port);
-    });
-  })
-  .catch(function(e) {
-    console.log('Error in sequelize.sync(): ' + e);
+  app.post('/upload', uploading.single('image'), function(req, res) {
+    var sess = req.session;
+    User.findOne({
+      where: {
+        id: req.cookies.id
+      }
+    }).then(function(user) {
+      var newImg = {
+        img: req.file.filename
+      };
+      User.update(newImg, {
+        where: {
+          id: user.id
+        }
+      });
+      });
+      res.redirect('/profile.html');
   });
+
+app.route('/logout')
+.get(userService.logout); app.route('/updateprofile')
+.post(userService.updateprofile);
+app.route('/signup')
+.post(userService.create); app.route('/login')
+.post(userService.login); app.route('/user')
+.get(userService.get)
+.post(userService.create); app.route('/user/:id')
+.get(userService.getID)
+.delete(userService.deleteID)
+.put(userService.updateID); app.route('/title')
+.get(titleService.get)
+.post(titleService.create); app.route('/title/:id')
+.put(titleService.updateID)
+.get(titleService.getID)
+.delete(titleService.deleteID); app.route('/skill')
+.get(skillService.get)
+.post(skillService.create); app.route('/skill/:id')
+.get(skillService.getID)
+.delete(skillService.deleteID)
+.put(skillService.updateID); app.route('/userskill')
+.get(userSkillService.get)
+.post(userSkillService.create); app.route('/userskill/:id')
+.get(userSkillService.getID); app.route('/userskill/:userid/:skillid')
+.get(userSkillService.getbothID)
+.put(userSkillService.updateID)
+.delete(userSkillService.deleteID); app.route('/user/:userid/profile')
+.get(userService.getWithInfo); server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
+  var addr = server.address();
+  console.log("Server listening at", addr.address + ":" + addr.port);
+});
+})
+.catch(function(e) {
+  console.log('Error in sequelize.sync(): ' + e);
+});

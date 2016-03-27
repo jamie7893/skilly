@@ -23,9 +23,9 @@ function drawUsers(users) {
         $.map(usersinfo, function(userinfo) {
           console.log(userinfo);
           $('#userlist').append('<div id="' + user.id + '" class="flexbox">');
-          $('#' + user.id).append('<img class="img-circle img-responsive img-center" src="/images/johnprofile.jpg" alt="">');
+          $('#' + user.id).append('<img id="proimage" class="img-circle img-responsive img-center" src="/images/'+ user.img + '" alt="">');
           $('#' + user.id).append('<h1 align="center">' + userinfo.title.name + '. ' + user.nameFirst + ' ' + user.nameLast + '</h2>');
-          $('#' + user.id).append('<p align="center"> users description here</p></div></div>');
+          $('#' + user.id).append('<p align="center">' + user.desc + '</p></div></div>');
         });
       }
     });

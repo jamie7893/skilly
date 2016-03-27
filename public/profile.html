@@ -99,7 +99,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a id="profile_form" href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+            <li><a id="profile_form" href="#">Edit Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
             <li><a href="#">Messages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
@@ -229,16 +229,30 @@
             <div id="thenewskill">
             </div>
 
-            <h1>Upload your profile picture here:</h1>
-            <input type="file" name="upfile">
-            <br />
-
             <h1>Describe your self</h1>
             <textarea rows="5" cols="60" type="text" name="desc" id="desc" placeholder="Describe your self" required="true" /></textarea>
             <br />
 
             <div class="action_btns">
               <div class="one_half"><a id="backbtn" href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+              <div class="one_half last">
+                <input type="submit" name="updateprofile" id="updateprofile" class="btn btn_red" value="Submit" />
+              </div>
+          </form>
+          </div>
+          </section>
+        </div>
+
+        <div id="setup_pic" class="user_pic">
+          <form method="post" action="/upload" enctype="multipart/form-data">
+
+            <h1>Upload your profile picture here:</h1>
+            <input type="file" name="image">
+            <br />
+
+
+            <div class="action_btns">
+              <div class="one_half"><a id="backbtn2" href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
               <div class="one_half last">
                 <input type="submit" name="updateprofile" id="updateprofile" class="btn btn_red" value="Submit" />
               </div>
@@ -270,6 +284,17 @@
               $(".user_register").show();
               $(".header_title").text('Register');
               return false;
+            });
+
+            $("#userlist").click(function() {
+              $('#userlist').hide();
+              $(".user_pic").show();
+              $(".header_title").text('Upload Profile Picture');
+              return false;
+            });
+            $('#backbtn2').click(function() {
+              $(".user_pic").hide();
+              $('#userlist').show();
             });
 
             $('#backbtn').click(function() {

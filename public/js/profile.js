@@ -32,7 +32,7 @@ function drawUsers(user) {
         $('.navbar-brand').text('Welcome ' + user.nameFirst.charAt(0).toUpperCase() + user.nameFirst.slice(1) + '!')
         console.log(userinfo);
         $('#userlist').append('<div id="' + user.id + '" class="flexbox">');
-        $('#' + user.id).append('<p align="center"> Preview:</p></div></div>');
+        $('#' + user.id).append('<p align="center"> Click here to upload a profile picture </p></div></div>');
         $('#' + user.id).append('<img class="img-circle img-responsive img-center" src="/images/' + user.img +'" alt="">');
         $('#' + user.id).append('<h1 align="center">' + userinfo.title.name + '. ' + user.nameFirst + ' ' + user.nameLast + '</h2>');
         $('#' + user.id).append('<p align="center">' + user.desc + '</p></div></div>');

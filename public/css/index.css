@@ -13,7 +13,9 @@
   height: auto;
   align-self: flex-start;
 }
-
+#proimage {
+  margin-top: 10px;
+}
 #login {
   margin-top: 20px;
 }

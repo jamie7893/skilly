@@ -9,7 +9,9 @@ body {
 }
 
 /* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
-
+#proimage{
+  margin-top: 10px;
+}
 .business-header {
     height: 400px;
     background: url('/images/MeetNewPeople-e1441064924741.jpg') center center no-repeat scroll;

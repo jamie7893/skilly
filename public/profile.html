@@ -219,11 +219,7 @@
             <div id="skills">
               <h1>Skills:</h1>
               <p id="addskill" onmouseover="" style="cursor: pointer;">Click here to add another skill!</p>
-              <select name="skill[]" id="skillpicker" class="form-control">
-                <option disabled selected value> -- select a skill -- </option>
-              </select>
-              <img id="removeskill" style="cursor: pointer;" class="removebtn" src="./images/red-minus-sign-icon-12101.png"></img>
-              <br />
+
             </div>
 
             <p id="newskill"> Don't see your skill in the list? Click here to add your custom skill</p>
@@ -289,7 +285,7 @@
               return false;
             });
 
-
+  
             $("#removeskill").click(function() {
               $("#skillpicker").remove();
               $("#removeskill").remove();

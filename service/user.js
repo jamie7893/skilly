@@ -45,19 +45,16 @@ module.exports = function(sequelize) {
           localemail: req.body.email
         }
       }).then(function(user) {
-        console.log(user);
         if (user) {
           var err = 'The Email you entered already exists';
           callback(err);
         }
-        console.log(req.body);
         var newUser = {
           localemail: req.body.email,
           nameLast: req.body.nameLast,
           nameFirst: req.body.nameFirst
 
         };
-        console.log(newUser);
         var aSalt = bcrypt.genSaltSync(10);
 
         var aHash = bcrypt.hashSync(req.body.password, aSalt);
@@ -66,7 +63,6 @@ module.exports = function(sequelize) {
           salt: aSalt,
           hash: aHash
         };
-        console.log(newPass);
         UserPass.create(newPass).then(function() {
           User.create(newUser).then(function() {
             res.redirect('/');
@@ -85,7 +81,6 @@ module.exports = function(sequelize) {
           var err = 'Your not logged in!';
           callback(err);
         }
-        console.log(req.body);
         Title.findOne({
           where: {
             name: req.body.title
@@ -105,6 +100,11 @@ module.exports = function(sequelize) {
               id: user.id
             }
           });
+          jctUserSkill.destroy({
+            where: {
+              id: user.id //this will be your id that you want to delete
+            }
+          });
           _.map(req.body.skill, function(skill) {
             Skill.findOne({
               where: {
@@ -112,23 +112,12 @@ module.exports = function(sequelize) {
               }
             }).then(function(foundskill) {
               if (foundskill) {
-                jctUserSkill.findOne({
-                  where: {
-                    id: user.id,
-                    idSkill: foundskill.skillid
-                  }
-                }).then(function(skillExist) {
-                  if (skillExist) {
-                    return;
-                  } else {
                     var newUserSkill = {
                       id: user.id,
                       idSkill: foundskill.skillid
                     };
 
                     jctUserSkill.create(newUserSkill);
-                  }
-                });
               } else {
                 var newSkill = {
                   name: skill
@@ -184,6 +173,8 @@ module.exports = function(sequelize) {
               });
               res.redirect('/profile.html');
             });
+          } else {
+            res.send("Invalid Login Details");
           }
         });
 
@@ -195,9 +186,32 @@ module.exports = function(sequelize) {
       res.redirect('/');
     },
     get: function(req, res) {
-      User.findAll().then(function(users) {
-        res.json(users);
-      });
+      if (Object.keys(req.query).length === 0) {
+        User.findAll().then(function(users) {
+          res.json(users);
+        });
+      } else if (req.query.contains){
+        var temp = {};
+        Skill.findAll({
+          where: {
+            name: {
+              like: '%' + req.query.contains + '%'
+            }
+          },
+          include: [{
+            model: User,
+            attributes: ['id'],
+            through: {
+              model: jctUserSkill,
+              attributes: []
+            },
+          }],
+          attributes: ['name']
+        }).then(function(foundSpec) {
+          temp.id = foundSpec;
+          res.json(temp);
+        });
+      }
     },
     getID: function(req, res) {
       User.findById(req.params.id).then(function(user) {

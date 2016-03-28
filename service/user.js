@@ -173,8 +173,6 @@ module.exports = function(sequelize) {
               });
               res.redirect('/profile.html');
             });
-          } else {
-            res.send("Invalid Login Details");
           }
         });
 

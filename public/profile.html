@@ -220,8 +220,9 @@
               <h1>Skills:</h1>
               <p id="addskill" onmouseover="" style="cursor: pointer;">Click here to add another skill!</p>
               <select name="skill[]" id="skillpicker" class="form-control">
-
+                <option disabled selected value> -- select a skill -- </option>
               </select>
+              <img id="removeskill" style="cursor: pointer;" class="removebtn" src="./images/red-minus-sign-icon-12101.png"></img>
               <br />
             </div>
 
@@ -230,7 +231,9 @@
             </div>
 
             <h1>Describe your self</h1>
-            <textarea rows="5" cols="60" type="text" name="desc" id="desc" placeholder="Describe your self" required="true" /></textarea>
+            <div id="descbox">
+              <textarea rows="5" cols="60" type="text" name="desc" id="desc" required="true" /></textarea>
+            </div>
             <br />
 
             <div class="action_btns">
@@ -286,6 +289,12 @@
               return false;
             });
 
+
+            $("#removeskill").click(function() {
+              $("#skillpicker").remove();
+              $("#removeskill").remove();
+              return false;
+            });
             $("#userlist").click(function() {
               $('#userlist').hide();
               $(".user_pic").show();

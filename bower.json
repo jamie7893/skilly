@@ -1,0 +1,24 @@
+{
+  "name": "skilly",
+  "description": "a app to showcase skilly",
+  "main": "index.js",
+  "authors": [
+    "jamie"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jamie7893/skilly",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-strap": "^2.3.8"
+  }
+}

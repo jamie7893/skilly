@@ -228,7 +228,7 @@ module.exports = function(sequelize) {
             model: Title,
             attributes: ['name']
           }],
-          "attributes": []
+          "attributes": ['id']
         })
         .then(function(user) {
           res.json(user);

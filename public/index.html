@@ -1,271 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="skilly" id="top">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="icon" href="assets/favicon.ico" />
+  <title>Skilly</title>
+  <meta name="description" content="AngularJS (Angular) native directives for Bootstrap. Small footprint (5kB gzipped!), no 3rd party JS dependencies (jQuery, bootstrap JS) required! Widgets: Accordion, Alert, Buttons, Carousel, Collapse, Dateparser, Datepicker, Dropdown, Modal, Pager, Pagination, Popover, Position, Progressbar, Rating, Tabs, Timepicker, Tooltip, Typeahead, ">
+  <meta name="google-site-verification" content="7lc5HyceLDqpV_6oNHteYFfxDJH7-S3DwnJKtNUKcRg" />
   <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
-  <script type="text/javascript" src="./js/floatlabels.min.js"></script>
-  <script type="text/javascript" src="./js/jquery.leanModal.min.js"></script>
-  <script src="./js/cookie.js"></script>
-  <script type="text/javascript" src="./js/index.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.0.0/FileSaver.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
+  <script src="./js/ui-bootstrap-tpls-1.2.5.js"></script>
+  <script src="assets/plunker.js"></script>
+  <script src="assets/app.js"></script>
 
-  <title>Business Frontpage - Start Bootstrap Template</title>
-
-  <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link href="css/business-frontpage.css" rel="stylesheet">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/rainbow.css" />
+  <link rel="stylesheet" href="assets/demo.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="author" href="https://github.com/angular-ui/bootstrap/graphs/contributors">
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <header class="navbar navbar-default navbar-fixed-top navbar-inner">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" ng-click="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
+        <a class="navbar-brand visible-xs" href="#">Skilly</a>
       </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul id="menu" class="nav navbar-nav">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="#">Services</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-          <li><a id="modal_trigger" href="#modal" class="cd-signin">Login/Sign Up</a></li>
+      <nav class="hidden-xs">
+        <ul class="nav navbar-nav">
+          <a href="#top" role="button" class="navbar-brand">
+                    Skilly
+                </a>
+          <li><a href="#login">Login/Sign up</a></li>
         </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-  </nav>
-
-  <!-- Image Background Page Header -->
-  <!-- Note: The background image is set within the business-casual.css file. -->
-  <header class="business-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-
-        </div>
-      </div>
+      </nav>
+      <nav class="visible-xs" uib-collapse="!isCollapsed">
+        <ul class="nav navbar-nav">
+          <li><a href="#login" ng-click="isCollapsed = !isCollapsed">Login/Sign up</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
+  <div class="header-placeholder"></div>
+  <div role="main">
+    <header class="bs-header text-center" id="overview">
 
-  <!-- Page Content -->
-  <div class="container">
 
-    <hr>
+      <img class="bs-header" src="./images/MeetNewPeople-e1441064924741.jpg"></img>
+    </header>
 
-    <div class="row">
-      <div class="col-sm-8">
-        <h2 align="center">Meet the best coders in louisiana!</h2>
-      </div>
+    <div id="userlist" ng-controller="GetAllUsers as list">
+      <div class="flex-box" ng-repeat="user in list.info">
 
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-8 col-xs-offset-2">
-            <div class="input-group">
-              <div class="input-group-btn search-panel">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <span id="search_concept">Search by</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a id="contains" href="#contains">Skill name contains</a></li>
-                  <li><a id="equal" href="#its_equal">Skill count equal to</a></li>
-                  <li><a id="greater" href="#greather_than">Skill count greather than ></a></li>
-                  <li><a id="less" href="#less_than">Skill count less than < </a></li>
-
-                </ul>
-              </div>
-              <input type="hidden" name="search_param" value="all" id="search_param">
-              <input id="searchbar" type="text" class="form-control" name="x" placeholder="Search">
-
-            </div>
-          </div>
+        <div><img class="flex-img" ng-src="./images/{{user.img}}"></img>
         </div>
+        <div id="username"><p align="center" class="username">{{user.nameFirst}} {{user.nameLast}}</p>
+        </div>
+        <div id="userdesc"><p align="center" class="userdesc">{{user.desc}}</p>
+        </div>
+
+        <div id="userskills"><ul align="center" class="userskills">Skills:</ul>
+                <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
+        </div>
+
       </div>
-
-
 
     </div>
-    <!-- /.List of users start -->
-    <div class="container">
-
-      <div id="modal" class="popupContainer" style="display:none;">
-        <header class="popupHeader">
-          <span class="header_title">Login</span>
-          <span class="modal_close"><i class="fa fa-times"></i></span>
-        </header>
-
-        <section class="popupBody">
-          <!-- Social Login -->
-          <div class="social_login">
-            <div class="">
-              <a href="#" class="social_box fb">
-                <span class="icon"><i class="fa fa-facebook"></i></span>
-                <span class="icon_title">Connect with Facebook</span>
-
-              </a>
-
-              <a href="#" class="social_box google">
-                <span class="icon"><i class="fa fa-google-plus"></i></span>
-                <span class="icon_title">Connect with Google</span>
-              </a>
-            </div>
-
-            <div class="centeredText">
-              <span>Or use your Email address</span>
-            </div>
-
-            <div class="action_btns">
-              <div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
-              <div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
-            </div>
-          </div>
-
-          <!-- Username & Password Login form -->
-          <div class="user_login">
-            <form method="post" action="/login">
-              <input type="text" name="email" id="email" placeholder="Email" required="true" />
-              <br />
 
 
-              <input type="password" name="password" id="password" placeholder="password" required="true" />
-              <br />
-
-              <div class="action_btns">
-                <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>Back</a></div>
-                <div class="one_half last">
-                  <input type="submit" name="signup" id="signup" class="btn btn_red" value="Login" />
-                </div>
-            </form>
-            </div>
-            <a href="#" class="forgot_password">Forgot password?</a>
-
-          </div>
-          <!-- Register Form -->
-          <div class="user_register">
-            <form method="post" action="/signup">
-
-              <input type="text" name="nameFirst" id="nameFirst" placeholder="First Name" required="true" />
-              <br />
-
-              <input type="text" name="nameLast" id="nameLast" placeholder="Last Name" required="true" />
-              <br />
-
-
-              <input type="text" name="email" id="email" placeholder="Email" required="true" />
-              <br />
-
-
-              <input type="password" name="password" id="password" placeholder="Password" required="true" />
-              <br />
-
-              <div class="action_btns">
-                <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                <div class="one_half last">
-                  <input type="submit" name="signup" id="signup" class="btn btn_red" value="Register" />
-                </div>
-            </form>
-            </div>
-        </section>
-        </div>
-
-
-      </div>
-
-
-      <script>
-        $('input').floatlabel({
-          labelEndTop: 0
-        });
-        $("#modal_trigger").leanModal({
-          top: 100,
-          overlay: 0.6,
-          closeButton: ".modal_close"
-        });
-
-        $(function() {
-          // Calling Login Form
-          $("#login_form").click(function() {
-            $(".social_login").hide();
-            $(".user_login").show();
-            return false;
-          });
-
-          // Calling Register Form
-          $("#register_form").click(function() {
-            $(".social_login").hide();
-            $(".user_register").show();
-            $(".header_title").text('Register');
-            return false;
-          });
-
-          // Going back to Social Forms
-          $(".back_btn").click(function() {
-            $(".user_login").hide();
-            $(".user_register").hide();
-            $(".social_login").show();
-            $(".header_title").text('Login');
-            return false;
-          });
-        });
-      </script>
-      <hr>
-
-      <div id="userlist" class="row">
-
-      </div>
-      <!-- /.List of users end -->
-
-      <hr>
-
-      <!-- Footer -->
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; Your Website 2016</p>
-          </div>
-        </div>
-        <!-- /.row -->
-      </footer>
-
-    </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-
-
+  </div>
+  <!-- /.main -->
+  <footer class="footer">
+  </footer>
+  <script src="assets/rainbow.js"></script>
+  <script src="assets/rainbow-generic.js"></script>
+  <script src="assets/rainbow-javascript.js"></script>
+  <script src="assets/rainbow-html.js"></script>
+  <script src="assets/smoothscroll-angular-custom.js"></script>
+  <script src="assets/uglifyjs.js"></script>
 </body>
 
 </html>

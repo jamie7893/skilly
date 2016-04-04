@@ -3,7 +3,6 @@
   width: 300px;
   margin-left: 51px;
 }
-
 .flex-box {
   -moz-box-shadow: 3px 3px 5px 6px #ccc;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
@@ -18,19 +17,40 @@
   width: 400px;
   height: auto;
   align-self: flex-start;
-
 }
-
 .username {
   font-size: 32px;
   font-weight: bold;
 }
-
 .userdesc {
   font-size: 16px;
 }
-
-
 #userlist {
   margin-top: 50px;
 }
+.flex-details {
+  float: right;
+  margin-right: 28px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.userskills {
+  font-size: 32px;
+}
+.skills {
+  font-size: 17px;
+  margin-left: 70px;
+  margin-bottom: 20px;
+}
+
+.viewskillbtn{
+   background: url("../images/btn_viewdetails.png") no-repeat 0 0;
+   height: 123px;
+   width: 123px;
+   }
+
+.viewskillbtn input[type="button"]{
+   opacity: 0;
+   height: 123px;
+   width: 123px;
+ }

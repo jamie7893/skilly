@@ -68,13 +68,21 @@
 
         <div><img class="flex-img" ng-src="./images/{{user.img}}"></img>
         </div>
-        <div id="username"><p align="center" class="username">{{user.nameFirst}} {{user.nameLast}}</p>
+
+        <div id="username">
+          <button ng-click="clickme()">click me</button>
+          <p align="center" class="username">{{user.nameFirst}} {{user.nameLast}}</p>
         </div>
-        <div id="userdesc"><p align="center" class="userdesc">{{user.desc}}</p>
+        <div id="userdesc">
+          <p align="center" class="userdesc">{{user.desc}}</p>
+          <!-- <div class="viewskillbtn">
+
+          </div> -->
         </div>
 
-        <div id="userskills"><ul align="center" class="userskills">Skills:</ul>
-                <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
+        <div ng-show="list.theSkills" id="userskills">
+          <ul class="userskills">Skills:</ul>
+          <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
         </div>
 
       </div>

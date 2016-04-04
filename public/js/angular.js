@@ -11,12 +11,15 @@
 
   .controller('GetAllUsers', ['$scope', '$http', function($scope, $http) {
     var self = this;
-    self.theSkills = true;
+    self.visible = false;
 
-   $scope.clickme = function() {
-     console.log('hello');
-   };
-
+    $scope.toggle = function() {
+      if (self.visible === false) {
+      self.visible = true;
+    } else {
+      self.visible = false;
+    }
+    };
     $http({
       method: 'GET',
       url: 'http://localhost:1738/user'

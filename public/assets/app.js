@@ -51,21 +51,26 @@
     var self = this;
     self.info = [];
 
+
+    self.toggleSkillsVisible = function(user) {
+      user.skillsVisible = !user.skillsVisible;
+    };
+
     $http({
       method: 'GET',
-      url: 'http://localhost:1738/user'
+      url: '/user'
     }).then(function successCallback(response) {
 
       $.map(response.data, function(user) {
 
         $http({
           method: 'GET',
-          url: 'http://localhost:1738/user/' + user.id + '/profile'
+          url: '/user/' + user.id + '/profile'
         }).then(function successCallback2(response2) {
           $.map(response2.data, function(theResponse) {
             user.skills = theResponse.skills;
+            user.skillsVisible  = true;
             self.info.push(user);
-            console.log(user);
           });
 
         }, function errorCallback2(response2) {

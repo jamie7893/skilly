@@ -2,6 +2,7 @@
   height: 300px;
   width: 300px;
   margin-left: 51px;
+  margin-top: 15px;
 }
 .flex-box {
   -moz-box-shadow: 3px 3px 5px 6px #ccc;
@@ -45,12 +46,12 @@
 
 .viewskillbtn{
    background: url("../images/btn_viewdetails.png") no-repeat 0 0;
-   height: 123px;
+   height: 33px;
    width: 123px;
    }
 
 .viewskillbtn input[type="button"]{
    opacity: 0;
-   height: 123px;
+   height: 33px;
    width: 123px;
  }

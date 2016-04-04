@@ -70,17 +70,18 @@
         </div>
 
         <div id="username">
-          <button ng-click="clickme()">click me</button>
+
           <p align="center" class="username">{{user.nameFirst}} {{user.nameLast}}</p>
         </div>
         <div id="userdesc">
           <p align="center" class="userdesc">{{user.desc}}</p>
-          <!-- <div class="viewskillbtn">
-
-          </div> -->
         </div>
+        <div class="viewskillbtn">
 
-        <div ng-show="list.theSkills" id="userskills">
+            <input type="button" class="viewskillbtn" ng-click="list.toggleSkillsVisible(user)" />
+        </div>
+        <br />
+        <div ng-hide="user.skillsVisible" id="userskills">
           <ul class="userskills">Skills:</ul>
           <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
         </div>

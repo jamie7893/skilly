@@ -50,7 +50,7 @@
    width: 123px;
    }
 
-.viewskillbtn input[type="button"]{
+.viewskillbtn button{
    opacity: 0;
    height: 33px;
    width: 123px;

@@ -1,0 +1,18 @@
+<header class="navbar navbar-default navbar-fixed-top navbar-inner" ng-controller="navController as nav">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand visible-xs" href="#">Skilly</a>
+    </div>
+    <nav class="hidden-xs">
+      <ul class="nav navbar-nav">
+        <a href="#top" role="button" class="navbar-brand">
+                  Skilly
+              </a>
+        <li><a ng-hide="nav.isLogged" href="#/login">Login/Sign Up</a></li>
+        <li><a ng-show="nav.isLogged" href="#/profile">Profile</a></li>
+        <li><a ng-show="nav.isLogged" ng-controller="LoginController" ng-click="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="header-placeholder"></div>

@@ -7,38 +7,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="icon" href="assets/favicon.ico" />
   <title>Skilly</title>
-  <meta name="description" content="AngularJS (Angular) native directives for Bootstrap. Small footprint (5kB gzipped!), no 3rd party JS dependencies (jQuery, bootstrap JS) required! Widgets: Accordion, Alert, Buttons, Carousel, Collapse, Dateparser, Datepicker, Dropdown, Modal, Pager, Pagination, Popover, Position, Progressbar, Rating, Tabs, Timepicker, Tooltip, Typeahead, ">
-  <meta name="google-site-verification" content="7lc5HyceLDqpV_6oNHteYFfxDJH7-S3DwnJKtNUKcRg" />
-  <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.0.0/FileSaver.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
-  <script src="./js/ui-bootstrap-tpls-1.2.5.js"></script>
-  <script src="assets/plunker.js"></script>
-  <script src="assets/app.js"></script>
+  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/rainbow.css" />
-  <link rel="stylesheet" href="assets/demo.css" />
+  <link rel="stylesheet" href="css/app.css" />
   <link rel="stylesheet" href="./css/index.css" />
-  <link rel="author" href="https://github.com/angular-ui/bootstrap/graphs/contributors">
 </head>
 
 <body>
-  
-    <ng-include src="'/views/navbar.html'"></ng-include>
-    <ng-include src="'/views/allusers.html'"></ng-include>
 
+  <ng-include src="'/templates/navbar.html'"></ng-include>
+  <main ng-view></main>
 
-    <!-- /.container -->
+  <!-- /.container -->
   </div>
   <!-- /.main -->
   <footer class="footer">
   </footer>
+  <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.leanmodal/1.1/jquery.leanmodal.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.7/fastclick.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.0.0/FileSaver.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-cookies.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/user/allUsers/controller.js"></script>
+  <script src="js/user/controller.js"></script>
+  <script src="js/login/controller.js"></script>
+  <script src="js/register/controller.js"></script>
+  <script src="js/user/factory.js"></script>
+  <script src="js/navbar/sideNavBar/controller.js"></script>
+  <script src="js/navbar/controller.js"></script>
   <script src="assets/rainbow.js"></script>
   <script src="assets/rainbow-generic.js"></script>
   <script src="assets/rainbow-javascript.js"></script>

@@ -111,7 +111,7 @@ sequelize.sync().then(function(res) {
     app.route('/logout')
       .get(userService.logout);
     app.route('/updateprofile')
-      .post(userService.updateprofile);
+      .put(userService.updateprofile);
     app.route('/signup')
       .post(userService.create);
     app.route('/login')

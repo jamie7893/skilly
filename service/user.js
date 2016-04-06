@@ -64,12 +64,22 @@ module.exports = function(sequelize) {
           hash: aHash
         };
         UserPass.create(newPass).then(function() {
-          User.create(newUser).then(function() {
+          User.create(newUser).then(function(aNewUser) {
+
+            var date = new Date();
+            var minutes = 30;
+            date.setTime(date.getTime() + (minutes * 60 * 1000));
+            res.cookie("name", aNewUser.nameFirst, {
+              expires: date
+            });
+            res.cookie("id", aNewUser.id, {
+              expires: date
+            });
             res.redirect('/');
           });
         });
       });
-  },
+    },
     updateprofile: function(req, res, callback) {
       var sess = req.session;
       User.findOne({
@@ -112,12 +122,12 @@ module.exports = function(sequelize) {
               }
             }).then(function(foundskill) {
               if (foundskill) {
-                    var newUserSkill = {
-                      id: user.id,
-                      idSkill: foundskill.skillid
-                    };
+                var newUserSkill = {
+                  id: user.id,
+                  idSkill: foundskill.skillid
+                };
 
-                    jctUserSkill.create(newUserSkill);
+                jctUserSkill.create(newUserSkill);
               } else {
                 var newSkill = {
                   name: skill
@@ -180,7 +190,7 @@ module.exports = function(sequelize) {
     },
     logout: function(req, res) {
       req.session.destroy();
-      res.clearCookie('name');
+      res.clearCookie();
       res.redirect('/');
     },
     get: function(req, res) {
@@ -188,7 +198,7 @@ module.exports = function(sequelize) {
         User.findAll().then(function(users) {
           res.json(users);
         });
-      } else if (req.query.contains){
+      } else if (req.query.contains) {
         var temp = {};
         Skill.findAll({
           where: {

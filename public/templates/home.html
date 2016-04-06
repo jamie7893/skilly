@@ -1,5 +1,11 @@
+<header class="bs-header text-center" id="overview">
+
+
+  <img class="bs-header" src="./images/MeetNewPeople-e1441064924741.jpg"></img>
+</header>
+
 <div id="userlist" ng-controller="GetAllUsers as list">
-  <div class="flex-box" ng-repeat="user in list.info">
+  <div class="flex-box" ng-repeat="user in list.info" >
 
     <div><img class="flex-img" ng-src="./images/{{user.img}}"></img>
     </div>
@@ -16,7 +22,7 @@
         <button class="viewskillbtn" ng-click="list.toggleSkillsVisible(user)" />
     </div>
     <br />
-    <div ng-hide="user.skillsVisible" id="userskills">
+    <div ng-hide="user.skillsVisible" id="userskills" ng-animate="'animate'">
       <ul class="userskills">Skills:</ul>
       <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
     </div>

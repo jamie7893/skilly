@@ -1,21 +1,54 @@
-<div class="formFlex">
+<div class="formFlex" ng-controller="EditProfileController">
     <h2 class="formTitle">Edit Profile</h2>
     <form class="form-signin" name="regForm">
+      <label>Title</label>
+      <select name="title" id="selectpicker" class="form-control" ng-model="user.title">
+          <option ng-repeat="title in titles">{{title}}</option>
+      </select>
+      <br />
       <label>First Name</label>
       <input type="text" name="nameFirst" class="form-control" ng-model="user.nameFirst">
+      <br />
       <label>Last Name</label>
       <input type="text" name="nameLast" class="form-control" ng-model="user.nameLast">
-      <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
-      <label>Email</label>
-      <input type="email" name="email" class="form-control" ng-model="user.email">
-      <p class="help-block" ng-show="regForm.email.$invalid">Enter a valid email.</p>
-  </div>
-  <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
-      <label>Password</label>
-      <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8">
-      <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
-      <a href="#/login"> Login</a>
-  </div>
-<button type="button" ng-disabled="!user.email || !user.password" ng-click="register()" class="btn btn-lg btn-primary btn-block">Register</button>
+      <br />
+      <label>Skills</label>
+      <br />
+      <label>Current Skills:</label>
+      <br /> <br />
+      <div ng-repeat="skill in user.skills">
+      <select name="skill[]" id="skillpicker" class="form-control" ng-model="user.skills[$index]">
+          <option >{{skill}}</option>
+      </select>
+        <br />
+      <button class="removeSkill" ng-click="removeItem(user.skills, $index)">Delete Skill</button>
+      <br />   <br />
+    </div>
+    <label>New Skills:</label>
+      <br />
+      <button ng-click="increment(count)">Add Skill</button><br /><br />
+      <div ng-repeat="i in count">
+      <select name="skill[]" id="skillpicker" class="form-control" ng-model="user.newskills[$index]">
+          <option ng-repeat="skill in skills">{{skill}}</option>
+      </select>
+        <br />
+      <button class="removeSkill" ng-click="removeItem(count, $index)">Delete Skill</button>
+      <br />   <br />
+    </div>
+      <br />
+      <label>New Custom Skills:</label>
+            <br />
+            <button ng-click="increment(countCust)">Add Custom Skill</button><br /><br />
+            <div ng-repeat="i in countCust">
+              <input type="text" name="nameLast" class="form-control" ng-model="user.custSkill[$index]">
+              <br />
+            <button class="removeSkill" ng-click="removeItem(countCust, $index)">Delete Skill</button>
+            <br />   <br />
+          </div>
+            <br />
+      <label>Description</label>
+      <textarea name="desc" class="form-control" ng-model="user.desc"></textarea>
+<br />
+<button type="button" ng-disabled="!user.title || !user.nameFirst || !user.nameLast || !user.desc" ng-click="update()" class="btn btn-lg btn-primary btn-block">Update Profile</button>
 </form>
 </div>

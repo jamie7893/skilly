@@ -1,7 +1,9 @@
+(function(angular) {
 angular.module('skilly')
 
 .factory('UserService', function($http, $cookieStore, $location) {
   var self = this;
+
   return {
     logIn: function(email, password) {
       return $http.post('/login', {
@@ -33,3 +35,4 @@ angular.module('skilly')
 
   };
 });
+})(window.angular);

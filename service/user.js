@@ -81,6 +81,7 @@ module.exports = function(sequelize) {
       });
     },
     updateprofile: function(req, res, callback) {
+      console.log(req.body);
       var sess = req.session;
       User.findOne({
         where: {
@@ -144,7 +145,6 @@ module.exports = function(sequelize) {
           });
         });
       });
-      res.redirect('/profile.html');
 
     },
     login: function(req, res, callback) {

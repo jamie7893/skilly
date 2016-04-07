@@ -1,7 +1,7 @@
 var myApp = angular.module('skilly');
 
 
-myApp.controller('navController', ['$scope', '$cookieStore', 'UserService', '$cookies', function($scope, $cookieStore, UserService, $cookies) {
+myApp.controller('navController', ['$scope', 'UserService', '$cookies', function($scope, UserService, $cookies) {
   var self = this;
   if ($cookies.get('id')) {
     self.isLogged = true;

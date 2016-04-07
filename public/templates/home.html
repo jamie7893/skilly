@@ -7,7 +7,7 @@
 <div id="userlist" ng-controller="GetAllUsers as list">
   <div class="flex-box" ng-repeat="user in list.info" >
 
-    <div><img class="flex-img" ng-src="./images/{{user.img}}"></img>
+    <div><img class="flex-img" ng-src="{{user.img}}"></img>
     </div>
 
     <div id="username">
@@ -25,7 +25,11 @@
     <div ng-hide="user.skillsVisible" id="userskills" ng-animate="'animate'">
       <ul class="userskills">Skills:</ul>
       <li class="skills" ng-repeat="skill in user.skills">{{skill.name}}</li>
+      <ul class="userskills">Tweets:</ul>
+      <li class="skills" ng-repeat="tweet in user.tweets">{{tweet}}</li>
+
     </div>
+
 
   </div>
 

@@ -102,7 +102,8 @@ module.exports = function(sequelize) {
             nameLast: req.body.nameLast,
             nameFirst: req.body.nameFirst,
             desc: req.body.desc,
-            idTitle: title.id
+            idTitle: title.id,
+            img: req.body.img
 
           };
           // console.log(userProfile);

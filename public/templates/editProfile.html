@@ -1,6 +1,11 @@
 <div class="formFlex" ng-controller="EditProfileController">
     <h2 class="formTitle">Edit Profile</h2>
     <form class="form-signin" name="regForm">
+      <label>Upload Profile Picture With Gravatar</label><br /><br />
+      <label>Gravatar Email:</label><br />
+      <input type="email" name="gravEmail" class="form-control" ng-model="user.gravEmail"></input><br />
+      <button ng-click="gravUpload()" ng-model="user.img">Upload</button>
+      <br /><br />
       <label>Title</label>
       <select name="title" id="selectpicker" class="form-control" ng-model="user.title">
           <option ng-repeat="title in titles">{{title}}</option>
@@ -11,6 +16,9 @@
       <br />
       <label>Last Name</label>
       <input type="text" name="nameLast" class="form-control" ng-model="user.nameLast">
+      <br />
+      <label>Twitter Username</label>
+      <input type="text" name="twitter" class="form-control" ng-model="user.twitter">
       <br />
       <label>Skills</label>
       <br />

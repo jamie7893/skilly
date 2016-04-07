@@ -3,9 +3,8 @@
 angular.module('skilly.login', ['ngRoute'])
 
   .controller('LoginController', ['$scope', '$location', '$window', 'UserService', '$cookies', '$rootScope',
-    function AdminUserCtrl($scope, $location, $window, UserService, $cookies, $rootScope) {
+    function AdminUserCtrl($scope, $location, $window, UserService, $cookies, $rootScope ) {
       //Admin User Controller (login, logout)
-
       $scope.login = function login() {
         var email = $scope.user.email;
         var password = $scope.user.password;
@@ -21,7 +20,6 @@ angular.module('skilly.login', ['ngRoute'])
       };
       $scope.logout = function logout() {
         UserService.logOut().success(function(data) {
-
           $cookies.remove('name');
           $cookies.remove('id');
           $rootScope.$broadcast('userLoggedOut');

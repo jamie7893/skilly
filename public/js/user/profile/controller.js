@@ -8,6 +8,14 @@
     $scope.count = [1];
     $scope.countCust = [0];
     $scope.number = 1;
+
+    $scope.gravUpload = function() {
+      UserService.grav($scope.user.gravEmail).success(function(data) {
+        $scope.user.img = "https://s.gravatar.com/avatar/"+ data + "?s=200";
+        console.log($scope.user.img);
+      });
+
+    };
     $scope.removeItem = function(array, index) {
       array.splice(index, 1);
     };
@@ -40,41 +48,42 @@
       method: 'GET',
       url: '/user/' + $cookies.get('id')
     }).then(function successCallback(response) {
-        $scope.user = response.data;
+      $scope.user = response.data;
       $http({
         method: 'GET',
         url: '/user/' + $cookies.get('id') + '/profile'
       }).then(function successCallback(response2) {
-          $scope.user.skills = [];
+        $scope.user.skills = [];
         $.map(response2.data, function(skill) {
-            $.map(skill.skills, function(aSkill) {
+          $.map(skill.skills, function(aSkill) {
             $scope.user.skills.push(aSkill.name);
           });
         });
       });
     });
-console.log($scope.user);
 
     $scope.update = function() {
-      console.log($scope.user.skills);
+        console.log($scope.user);
       $.map($scope.user.newskills, function(newskill) {
-      $scope.user.skills.push(newskill);
+        $scope.user.skills.push(newskill);
       });
       $.map($scope.user.custSkill, function(aSkill) {
-      $scope.user.skills.push(aSkill);
+        $scope.user.skills.push(aSkill);
       });
-      console.log($scope.user.skills);
       var nameFirst = $scope.user.nameFirst;
       var nameLast = $scope.user.nameLast;
       var skill = $scope.user.skills;
       var desc = $scope.user.desc;
       var title = $scope.user.title;
+      var img = $scope.user.img;
+      var twitter = $scope.user.twitter;
+      var id = $cookies.get('id');
       if (nameLast !== undefined && nameFirst !== undefined) {
-        UserService.edit(desc, title, nameFirst, nameLast, skill).success(function(data) {
-    });
-  }
-    $location.path("/profile");
-  };
+        UserService.edit(desc, title, nameFirst, nameLast, skill, img).success(function(data) {});
+        UserService.twitter(twitter, id).success(function(data) {});
+      }
+      $location.path("/profile");
+    };
   });
 
 })(window.angular);

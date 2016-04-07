@@ -15,6 +15,7 @@ const
   bcrypt = require('bcrypt-nodejs'),
   path = require('path'),
   multer = require('multer'),
+  crypto = require('crypto'),
   session = require('express-session');
 
 
@@ -33,6 +34,7 @@ var uploading = multer({
     files: 1
   }
 });
+
 
 
 app.set('trust proxy', 1); // trust first proxy
@@ -67,10 +69,13 @@ const sequelize = new Sequelize('skilly', 'root', 'admin', {
     timestamps: false,
   }
 });
+
 const skillService = require("./service/skill")(sequelize);
 const titleService = require("./service/title")(sequelize);
 const userService = require("./service/user")(sequelize);
 const userSkillService = require("./service/userskill")(sequelize);
+const twitterService = require("./service/twitter")(sequelize);
+
 
 
 var Skill = sequelize.import('./model/skill.js');
@@ -78,6 +83,7 @@ var User = sequelize.import('./model/user.js');
 var UserSkill = sequelize.import('./model/userskill.js');
 var Title = sequelize.import('./model/title.js');
 var UserPass = sequelize.import('./model/userpassword.js');
+var UserTwitter = sequelize.import("./model/userTwitter");
 
 
 
@@ -88,6 +94,19 @@ sequelize.sync().then(function(res) {
     UserSkill.sync();
     Title.sync();
     UserPass.sync();
+    UserTwitter.sync();
+
+app.post('/gravatar', function(req, res) {
+  var email = req.body.email;
+  var hash = crypto.createHash('md5').update(email).digest('hex');
+  res.send(hash);
+
+});
+
+
+    app.route('/user/:id/twitter')
+      .get(twitterService.get)
+      .post(twitterService.create);
 
     app.post('/upload', uploading.single('image'), function(req, res) {
       var sess = req.session;

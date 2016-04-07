@@ -2,7 +2,7 @@
 <div id="userlist" ng-controller="GetUser as list">
   <div class="profile-box" ng-repeat="user in list.info">
 
-    <div><img class="flex-img" ng-src="./images/{{user.img}}"></img>
+    <div><img class="flex-img" ng-src="{{user.img}}"></img>
     </div>
 
     <div id="username">

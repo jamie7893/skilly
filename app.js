@@ -56,6 +56,10 @@ module.exports.close = function() {
   server.close();
 };
 
+
+
+
+
 // sequelize initialization //
 const sequelize = new Sequelize('postgres://hghqfvndemjrcs:6LC5GhkVN6KV-GDMgvh7Szz-Kr@ec2-23-21-165-183.compute-1.amazonaws.com:5432/d7mmn0j5evqt7k');
 //

@@ -69,7 +69,7 @@ module.exports = function(sequelize) {
                 include_rts: false
               };
               twitter.get(path, params, function(error, tweets, response) {
-                if (error) throw error;
+                if (error) console.log(error);;
                 res.status(200).json(tweets);
               });
             }

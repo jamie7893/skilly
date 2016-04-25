@@ -25,9 +25,8 @@
             method: 'GET',
             url: '/user/' + user.id + '/twitter'
           }).then(function successCallback(tweetResponse) {
-            user.tweets = [];
-            $.map(tweetResponse.data, function(tweet) {
-                    user.tweets.push(tweet.text);
+            user.tweets = $.map(tweetResponse.data, function(tweet) {
+                  return tweet.text;
             });
 
 

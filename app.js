@@ -55,18 +55,8 @@ module.exports.close = function() {
 };
 
 // sequelize initialization //
-const sequelize = new Sequelize('skilly', 'root', 'admin', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-  define: {
-    timestamps: false,
-  }
-});
+const sequelize = new Sequelize('postgres://duusnuxpbbwyid:QcJvw_QhuMYEbgFBD0qq-IlZGM@ec2-54-204-46-221.compute-1.amazonaws.com:5432/dcsntmb7vs7ece');
+
 const skillService = require("./service/skill")(sequelize);
 const titleService = require("./service/title")(sequelize);
 const userService = require("./service/user")(sequelize);

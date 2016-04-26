@@ -4,7 +4,8 @@
   "description": "a app to showcase skilly",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover node_modules/mocha/bin/_mocha --test/ -R spec"
+    "test": "istanbul cover node_modules/mocha/bin/_mocha --test/ -R spec",
+    "start": "node app.js"
   },
   "author": "jamie",
   "license": "ISC",

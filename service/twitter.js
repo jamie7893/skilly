@@ -4,7 +4,7 @@ module.exports = function(sequelize) {
 
   const
     User = sequelize.import("../model/user"),
-    UserTwitter = sequelize.import("../model/userTwitter"),
+    UserTwitter = sequelize.import("../model/UserTwitter"),
     Twitter = require('twitter');
 
   var twitter = new Twitter({

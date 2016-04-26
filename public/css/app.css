@@ -14,16 +14,17 @@
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow: 3px 3px 5px 6px #ccc;
   display: -webkit-flex;
-  display: inline-flex;
+  display: flex;
   align-content: flex-start;
-  margin-left: 100px;
   margin-bottom: 35px;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  width: 400px;
+  width: 941px;
   height: auto;
-  margin-left: 35%;
-  margin-top: 20px;
+  margin-left: 23%;
+  margin-top: 100px;
+  margin-right: 00px;
+  background-color: white;
 }
 .ng-cloak {
   opacity: 0;

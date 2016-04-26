@@ -77,7 +77,7 @@ var User = sequelize.import('./model/user.js');
 var UserSkill = sequelize.import('./model/userskill.js');
 var Title = sequelize.import('./model/title.js');
 var UserPass = sequelize.import('./model/userpassword.js');
-var UserTwitter = sequelize.import("./model/UUserTwitter");
+var UserTwitter = sequelize.import("./model/UserTwitter");
 
 
 //sync the model with the database
